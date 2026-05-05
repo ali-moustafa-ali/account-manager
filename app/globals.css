@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --surface-1: oklch(98% 0.01 80);
+  --surface-2: oklch(96% 0.012 80);
+
+  --ink-1: oklch(20% 0.01 270);
+  --ink-2: oklch(45% 0.01 270);
+  --ink-3: oklch(65% 0.01 270);
+
+  --status-cleared-fg: oklch(38% 0.10 145);
+  --status-cleared-bg: oklch(94% 0.04 145);
+  --status-partial-fg: oklch(45% 0.15 75);
+  --status-partial-bg: oklch(94% 0.06 75);
+  --status-pending-fg: oklch(45% 0.01 270);
+  --status-pending-bg: oklch(96% 0.012 80);
+  --status-overdue-fg: oklch(98% 0.01 0);
+  --status-overdue-bg: oklch(48% 0.20 25);
+
+  --line: oklch(88% 0.01 270);
+  --radius-card: 0.75rem;
+  --radius-pill: 9999px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-ink-1: var(--ink-1);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-status-cleared-fg: var(--status-cleared-fg);
+  --color-status-cleared-bg: var(--status-cleared-bg);
+  --color-status-partial-fg: var(--status-partial-fg);
+  --color-status-partial-bg: var(--status-partial-bg);
+  --color-status-pending-fg: var(--status-pending-fg);
+  --color-status-pending-bg: var(--status-pending-bg);
+  --color-status-overdue-fg: var(--status-overdue-fg);
+  --color-status-overdue-bg: var(--status-overdue-bg);
+
+  --radius-card: var(--radius-card);
+  --radius-pill: var(--radius-pill);
+
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-instrument), system-ui, -apple-system, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface-1);
+  color: var(--ink-1);
+  font-family: var(--font-instrument), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }

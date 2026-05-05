@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/period-rollover",
+      "schedule": "5 22 * * *"
+    }
+  ]
+}
