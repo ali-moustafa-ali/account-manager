@@ -2,9 +2,11 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
 
+type DbClient = ReturnType<typeof createDb>;
+
 declare global {
   // eslint-disable-next-line no-var
-  var __dbClient: ReturnType<typeof createDb> | undefined;
+  var __dbClient: DbClient | undefined;
   // eslint-disable-next-line no-var
   var __pgClient: ReturnType<typeof postgres> | undefined;
 }
@@ -24,5 +26,27 @@ function createDb() {
   return drizzle(pg, { schema });
 }
 
-export const db: ReturnType<typeof createDb> = globalThis.__dbClient ?? createDb();
-if (process.env.NODE_ENV !== "production") globalThis.__dbClient = db;
+let cached: DbClient | undefined;
+
+function getDb(): DbClient {
+  if (cached) return cached;
+  if (globalThis.__dbClient) {
+    cached = globalThis.__dbClient;
+    return cached;
+  }
+  cached = createDb();
+  if (process.env.NODE_ENV !== "production") globalThis.__dbClient = cached;
+  return cached;
+}
+
+/**
+ * Lazy-init Drizzle client. Wrapped in a Proxy so importing this module
+ * doesn't open a connection — useful for build-time analysis where
+ * DATABASE_URL may not be set. The connection is opened only when a
+ * property of `db` is actually accessed (e.g. `db.select(...)`).
+ */
+export const db: DbClient = new Proxy({} as DbClient, {
+  get(_target, prop, receiver) {
+    return Reflect.get(getDb() as object, prop, receiver);
+  },
+});

@@ -24,6 +24,7 @@ function Stat({
         className={`font-display text-3xl font-medium tracking-tight tabular-nums ${
           emphasis === "danger" ? "text-status-overdue-bg" : "text-ink-1"
         }`}
+        dir="ltr"
       >
         {value}
       </div>
@@ -34,14 +35,14 @@ function Stat({
 export function SummaryStrip({ data }: { data: SummaryData }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      <Stat label="Clients" value={data.totalClients} />
-      <Stat label="Outstanding" value={formatEGP(data.totalRemaining)} />
+      <Stat label="العملاء" value={data.totalClients} />
+      <Stat label="الإجمالي المتبقي" value={formatEGP(data.totalRemaining)} />
       <Stat
-        label="Overdue"
+        label="متأخر"
         value={data.overdueCount}
         emphasis={data.overdueCount > 0 ? "danger" : undefined}
       />
-      <Stat label="Pending" value={data.pendingCount} />
+      <Stat label="قيد الانتظار" value={data.pendingCount} />
     </div>
   );
 }

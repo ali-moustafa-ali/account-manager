@@ -16,19 +16,19 @@ export function ClientRow({ client, period }: { client: Client; period: DerivedP
           {client.name}
         </Link>
       </td>
-      <td className="py-4 px-4 text-right tabular-nums text-ink-2">
+      <td className="py-4 px-4 text-end tabular-nums text-ink-2" dir="ltr">
         {formatEGP(client.packageCost)}
       </td>
-      <td className="py-4 px-4 text-right tabular-nums text-ink-1">
+      <td className="py-4 px-4 text-end tabular-nums text-ink-1" dir="ltr">
         {formatEGP(period.effectiveTarget)}
       </td>
-      <td className="py-4 px-4 text-right tabular-nums text-ink-1">
+      <td className="py-4 px-4 text-end tabular-nums text-ink-1" dir="ltr">
         {formatEGP(period.paidThisPeriod)}
       </td>
-      <td className="py-4 px-4 text-right tabular-nums text-ink-3">
+      <td className="py-4 px-4 text-end tabular-nums text-ink-3" dir="ltr">
         {formatEGP(client.totalAdsAmount)}
       </td>
-      <td className="py-4 px-4 text-right tabular-nums text-ink-1 font-medium">
+      <td className="py-4 px-4 text-end tabular-nums text-ink-1 font-medium" dir="ltr">
         {formatEGP(period.remaining)}
       </td>
       <td className="py-4 px-4">
