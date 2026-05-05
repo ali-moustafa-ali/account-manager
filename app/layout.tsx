@@ -19,6 +19,11 @@ const instrumentSans = Instrument_Sans({
 export const metadata: Metadata = {
   title: "Account Manager Dashboard",
   description: "Marketing agency client tracker — packages, payments, services.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
